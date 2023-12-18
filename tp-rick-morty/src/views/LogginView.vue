@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <h2>Home</h2>
+    <h2>Connexion</h2>
 </template>
 
 <style scoped>
