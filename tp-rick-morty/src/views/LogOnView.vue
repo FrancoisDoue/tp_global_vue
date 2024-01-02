@@ -1,8 +1,10 @@
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 import { REG_PASSWORD, REG_MAIL } from '@/constants/regex';
-// import InputComponent from '@/components/InputComponent.vue';
-import { logOn } from '@/services/user';
+import { useRouter } from 'vue-router';
+import { logOn } from '@/services/userService.js';
+
+const router = useRouter();
 
 const username = reactive({str: '', error: false})
 const email = reactive({str: '', error: false})
@@ -26,11 +28,11 @@ const ctrlConfirmPassword = () => {
 
 const submitLogOn = () => {
     if(!(ctrlUsername() || ctrlEmail() || ctrlPassword() || ctrlConfirmPassword()))
-        logOn({
-            'username': username.str,
-            'email': email.str,
-            'password': password.str
-        })
+        if (logOn({'username': username.str, 'email': email.str, 'password': password.str })){
+            console.log('log on successed')
+            router.replace('/loggin')
+        }
+
 }
 </script>
 
@@ -88,4 +90,4 @@ const submitLogOn = () => {
 
 <style scoped>
 
-</style>
+</style>@/services/userService
